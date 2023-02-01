@@ -3,16 +3,14 @@ const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const blogRoutes = require("./routes/blogRoutes");
-// require("dotenv").config();
+require("dotenv").config({path: '.env'});
 
-// console.log(process.env.APP_PORT)
-// console.log(process.env.DB_URL)
 // express app
 const app = express();
 // connect mongodb
-const dbURI = /*process.env.DB_URL*/"mongodb+srv://rbale0831:rohit3108@cluster0.dzwxs.mongodb.net/node-tuts";
+const dbURI = process.env.DB_URL;
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then((result) => app.listen(/*process.env.APP_PORT*/3000))
+    .then((result) => app.listen(process.env.APP_PORT))
     .catch((error) => console.log(error));
 
 // register view engine
